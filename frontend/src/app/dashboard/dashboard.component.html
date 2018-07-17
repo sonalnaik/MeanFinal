@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+  <h4>Customer Details</h4>
+
+  <table class="dashboard">
+    <tr>
+      <th>Company</th>
+      <th>Contact</th>
+      <th>Country</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let company of companyData">
+      <td>{{company.company}}</td>
+      <td>{{company.contact}}</td>
+      <td>{{company.country}}</td>
+      <td>
+        <button (click)="update_company(company.id)">Update</button>
+        <button (click)="delete_company(company.id);">Delete</button>
+      </td>
+    </tr>
+
+  </table>
+  <div style="margin-top:20px;" *ngIf="editData != ''">
+    <div class="middle">
+            
+           
+              <form name="companyForm" action="" method="post" (ngSubmit)="f.form.valid && saveData()" #f="ngForm" novalidate>
+                <input type="hidden"  name="id" [(ngModel)]="model.id" />
+
+                <table width="570" border="0" cellspacing="0" cellpadding="0" class="standard-table">
+
+                  <tr>
+                    <td valign="middle">Company :</td>
+                    <td>
+                      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !company.valid }">
+
+                        <input type="text" class="form-control inpt" name="company" [(ngModel)]="model.company" #company="ngModel" required />
+                        <div *ngIf="f.submitted && !company.valid" class="help-block">Please enter Company.</div>
+                      </div>
+                    </td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+
+                    <td valign="middle">contact :</td>
+                    <td>
+                      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !contact.valid }">
+
+                        <input type="text" class="form-control inpt" name="contact" [(ngModel)]="model.contact" #contact="ngModel" required />
+                        <div *ngIf="f.submitted && !contact.valid" class="help-block">Please enter Contact.</div>
+                      </div>
+                      
+                      
+                    </td>
+                    <td>
+                      </tr>
+                    <tr>
+                      <td valign="middle">Country :</td>
+                    <td>
+                      <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !country.valid }">
+
+                        <input type="text" class="form-control inpt" name="country" [(ngModel)]="model.country" #country="ngModel" required />
+                        <div *ngIf="f.submitted && !country.valid" class="help-block">Please enter country.</div>
+                      </div>
+                       <input type="submit" class="btn" value="Submit" /> 
+                      
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td></td>
+                  </tr>
+                </table>
+
+              </form>
+           
+          
+          <div class="clear"></div>
+          <div class="clear"></div>
+          </div>
+  </div>
+
+</body>
+
+</html>
